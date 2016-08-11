@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -55,7 +55,8 @@ def login_view(request):
             password=request.POST['password']
         )
         login(request, user)
-        return redirect('/')
+        return HttpResponse('ok')
+        # return redirect('/')
         # return HttpResponseRedirect('/')
     my_form = AuthenticationForm()
     return render(request, 'login.html', {'form': my_form})
